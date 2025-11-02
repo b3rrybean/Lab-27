@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <tuple>
 using namespace std;
 
 int main() {
@@ -34,19 +35,30 @@ int main() {
     do {
         // display menu
         cout << "\nMenu:\n";
-        cout << "1. Increase Friendship\n";
-        cout << "2. Decrease Friendship\n";
-        cout << "3. Search for Villager\n";
-        cout << "4. Exit\n";
+        cout << "1. Add Villager\n";
+        cout << "2. Delete Villager\n";
+        cout << "3. Increase Friendship\n";
+        cout << "4. Decrease Friendship\n";
+        cout << "5. Search for Villager\n";
+        cout << "6. Exit\n";
         cout << "Enter choice; ";
         cin >> choice;
-
         // option 1: adding a villager
         if (choice == 1) {
             cout << "Villager name: ";
             getline(cin >> ws, name);
 
-            // will need tuple at end
+            int level;
+            string species, catchphrase;
+            cout << "Friendship level: ";
+            cin >> level;
+            cout << "Species: ";
+            getline(cin, species);
+            cout << "Catchphrase: ";
+            getline(cin, catchphrase);
+
+            villagers[name] = make_tuple(level, species, catchphrase);
+            cout << name << " added.\n";
         }
 
         // option 2: deleting a villager
@@ -118,7 +130,7 @@ int main() {
             cout << "Invalid choice. Try again.\n";
         }
 
-    } while (choice != 4);
+    } while (choice != 6);
 
     // report size, clear, report size again to confirm villager operations
     cout << "\nSize before clear: " << villagers.size() << endl;
