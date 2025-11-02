@@ -18,28 +18,18 @@ int main() {
 
     // display the villagers
     cout << "Villager details:" << endl;
-    for (auto pair : villagerColors) {
-        cout << pair.first << ": ";
-        for (auto color : pair.second)
-            cout << color << " ";
-        cout << endl;
+    for (const auto& [name, info] : villagers) {
+        cout << name << " ["
+             << get<0>(info) << ", "
+             << get<1>(info) << ", "
+             << get<2>(info) << "]\n";
     }
 
-    // access the map using iterators
-    cout << "\nVillagers and their favorite colors (iterators):" << endl;
-    for (map<string, vector<string>>::iterator it = villagerColors.begin(); 
-                                               it != villagerColors.end(); ++it) {
-        cout << it->first << ": ";
-        for (auto color : it->second) {
-            cout << color << " ";
-        }
-        cout << endl;
-    }
-
-    // delete an element
-    villagerColors.erase("Raymond");
-
-    // search for an element using .find() to avoid errors
+    // increase or decrease friendship
+    cout << "Increasing Drago's friendship by 1!" << endl;
+    get<0>(villagers["Drago"]) += 1;
+    
+    // search for a villager
     string searchKey = "Audie";
     auto it = villagerColors.find(searchKey);
     if (it != villagerColors.end()) {  // the iterator points to beyond the end of the map
@@ -55,6 +45,9 @@ int main() {
     cout << "\nSize before clear: " << villagerColors.size() << endl;
     villagerColors.clear();
     cout << "Size after clear: " << villagerColors.size() << endl;
+
+    // delete a villager
+    villagerColors.erase("Raymond");
 
     return 0;
 }
