@@ -41,8 +41,30 @@ int main() {
         cout << "Enter choice; ";
         cin >> choice;
 
-        // option 1: milestone 2's increase but interactive now
+        // option 1: adding a villager
         if (choice == 1) {
+            cout << "Villager name: ";
+            getline(cin >> ws, name);
+
+            // will need tuple at end
+        }
+
+        // option 2: deleting a villager
+        else if (choice == 2) {
+            cout << "Enter villager name to delete: ";
+            getline(cin >> ws, name);
+
+            auto it = villagers.find(name);
+            if (it != villagers.end()) {
+                villagers.erase(it);
+                cout << name << " deleted.\n";
+            } else {
+                cout << "Villager not found.\n";
+            }
+        }
+
+        // option 3: milestone 2's increase but interactive now
+        else if (choice == 3) {
             cout << "Enter villager name to increase friendship: ";
             getline(cin >> ws, name);
 
@@ -56,8 +78,8 @@ int main() {
             }
         }
 
-        // option 2: decrease version
-        else if (choice == 2) {
+        // option 4: decrease version
+        else if (choice == 4) {
             cout << "Enter villager name to decrease friendship: ";
             getline(cin >> ws, name);
 
@@ -71,8 +93,8 @@ int main() {
             }
         }
 
-        // option 3: milestone 2's search code reused
-        else if (choice == 3) {
+        // option 5: milestone 2's search code reused
+        else if (choice == 5) {
             cout << "Enter villager name to search: ";
             getline(cin >> ws, name);
 
@@ -87,8 +109,8 @@ int main() {
             }
         }
 
-        // option 4: exit program
-        else if (choice == 4) {
+        // option 6: exit program
+        else if (choice == 6) {
             cout << "Exiting program\n";
             break;
         }
@@ -102,12 +124,6 @@ int main() {
     cout << "\nSize before clear: " << villagers.size() << endl;
     villagers.clear();
     cout << "Size after clear: " << villagers.size() << endl;
-
-    // delete a villager
-    villagers["Raymond"] = make_tuple(8, "Cat", "Nice fit!");
-    cout << "\nAdded Raymond back.\n";
-    villagers.erase("Raymond");
-    cout << "Deleted Raymond. Current size: " << villagers.size() << endl;
 
     return 0;
 }
