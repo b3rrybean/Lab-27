@@ -25,6 +25,27 @@ int main() {
              << get<2>(info) << "]\n";
     }
 
+    // milestone 3 is menu-driven so we implement milestone 2 into its menu options
+    // this turns the hardcoded functions into menu options
+
+    int choice;
+    string name;
+
+    do {
+        // display menu
+        cout << "\nMenu:\n";
+        cout << "1. Increase Friendship\n";
+        cout << "2. Decrease Friendship\n";
+        cout << "3. Search for Villager\n";
+        cout << "4. Exit\n";
+        cout << "Enter choice; ";
+        cin >> choice;
+
+        // option 1: milestone 2's increase/decrease but interactive now
+
+        
+    }
+
     // increase or decrease friendship
     cout << "Increasing Drago's friendship by 1!" << endl;
     get<0>(villagers["Drago"]) += 1;
