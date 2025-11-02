@@ -28,26 +28,37 @@ int main() {
     // increase or decrease friendship
     cout << "Increasing Drago's friendship by 1!" << endl;
     get<0>(villagers["Drago"]) += 1;
+
+    cout << "\nUpdated villager details:\n";
+    for (const auto& [name, info] : villagers) {
+         cout << name << " ["
+             << get<0>(info) << ", "
+             << get<1>(info) << ", "
+             << get<2>(info) << "]\n";
+    }
     
     // search for a villager
-    string searchKey = "Audie";
-    auto it = villagerColors.find(searchKey);
-    if (it != villagerColors.end()) {  // the iterator points to beyond the end of the map
+    string searchKey = "Drago";
+    auto it = villagers.find(searchKey);
+    if (it != villagers.end()) {       // the iterator points to beyond the end of the map
                                        // if searchKey is not found
-        cout << "\nFound " << searchKey << "'s favorite colors: ";
-        for (auto color : it->second)  // range loop to traverse the value/vector
-            cout << color << " ";
-        cout << endl;
+        cout << "\nFound " << searchKey << ": ["
+             << get<0>(it->second) << ", "
+             << get<1>(it->second) << ", "
+             << get<2>(it->second) << "]\n";
     } else
         cout << endl << searchKey << " not found." << endl;
 
-    // report size, clear, report size again to confirm map operations
-    cout << "\nSize before clear: " << villagerColors.size() << endl;
-    villagerColors.clear();
-    cout << "Size after clear: " << villagerColors.size() << endl;
+    // report size, clear, report size again to confirm villager operations
+    cout << "\nSize before clear: " << villagers.size() << endl;
+    villagers.clear();
+    cout << "Size after clear: " << villagers.size() << endl;
 
     // delete a villager
-    villagerColors.erase("Raymond");
+    villagers["Raymond"] = make_tuple(8, "Cat", "Nice fit!");
+    cout << "\nAdded Raymond back.\n";
+    villagers.erase("Raymond");
+    cout << "Deleted Raymond. Current size: " << villagers.size() << endl;
 
     return 0;
 }
