@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <tuple>
+#include <limits>
 using namespace std;
 
 int main() {
@@ -43,6 +44,8 @@ int main() {
         cout << "6. Exit\n";
         cout << "Enter choice; ";
         cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
         // option 1: adding a villager
         if (choice == 1) {
             cout << "Villager name: ";
@@ -52,6 +55,7 @@ int main() {
             string species, catchphrase;
             cout << "Friendship level: ";
             cin >> level;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Species: ";
             getline(cin, species);
             cout << "Catchphrase: ";
