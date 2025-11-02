@@ -41,21 +41,40 @@ int main() {
         cout << "Enter choice; ";
         cin >> choice;
 
-        // option 1: milestone 2's increase/decrease but interactive now
+        // option 1: milestone 2's increase but interactive now
+        if (choice == 1) {
+            cout << "Enter villager name to increase friendship: ";
+            getline(cin >> ws, name);
 
+            auto it = villagers.find(name);
+            if (it != villagers.end()) {
+                int level = get<0>(it->second);
+                if (level < 10) level++;
+                cout << name << "'s friendship level is now " << level << ".\n";
+            } else {
+                cout << "Villager not found.\n";
+            }
+        }
+
+        // option 2: decrease version
+        // paste increase but choice is now 2 and level--
+        if (choice == 2) {
+            cout << "Enter villager name to increase friendship: ";
+            getline(cin >> ws, name);
+
+            auto it = villagers.find(name);
+            if (it != villagers.end()) {
+                int level = get<0>(it->second);
+                if (level < 10) level--;
+                cout << name << "'s friendship level is now " << level << ".\n";
+            } else {
+                cout << "Villager not found.\n";
+            }
+        }
+
+        // option 3: milestone 2's search code reused
         
-    }
 
-    // increase or decrease friendship
-    cout << "Increasing Drago's friendship by 1!" << endl;
-    get<0>(villagers["Drago"]) += 1;
-
-    cout << "\nUpdated villager details:\n";
-    for (const auto& [name, info] : villagers) {
-         cout << name << " ["
-             << get<0>(info) << ", "
-             << get<1>(info) << ", "
-             << get<2>(info) << "]\n";
     }
     
     // search for a villager
