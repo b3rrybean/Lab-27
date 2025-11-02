@@ -57,15 +57,14 @@ int main() {
         }
 
         // option 2: decrease version
-        // paste increase but choice is now 2 and level--
-        if (choice == 2) {
+        else if (choice == 2) {
             cout << "Enter villager name to decrease friendship: ";
             getline(cin >> ws, name);
 
             auto it = villagers.find(name);
             if (it != villagers.end()) {
                 int& level = get<0>(it->second);
-                if (level < 10) level--;
+                if (level > 0) level--;
                 cout << name << "'s friendship level is now " << level << ".\n";
             } else {
                 cout << "Villager not found.\n";
@@ -89,8 +88,16 @@ int main() {
         }
 
         // option 4: exit program
+        else if (choice == 4) {
+            cout << "Exiting program\n";
+            break;
+        }
+        else {
+            cout << "Invalid choice. Try again.\n";
+        }
 
-        
+    } while (choice != 4);
+
     // report size, clear, report size again to confirm villager operations
     cout << "\nSize before clear: " << villagers.size() << endl;
     villagers.clear();
