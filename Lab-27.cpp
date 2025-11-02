@@ -48,7 +48,7 @@ int main() {
 
             auto it = villagers.find(name);
             if (it != villagers.end()) {
-                int level = get<0>(it->second);
+                int& level = get<0>(it->second);
                 if (level < 10) level++;
                 cout << name << "'s friendship level is now " << level << ".\n";
             } else {
@@ -59,12 +59,12 @@ int main() {
         // option 2: decrease version
         // paste increase but choice is now 2 and level--
         if (choice == 2) {
-            cout << "Enter villager name to increase friendship: ";
+            cout << "Enter villager name to decrease friendship: ";
             getline(cin >> ws, name);
 
             auto it = villagers.find(name);
             if (it != villagers.end()) {
-                int level = get<0>(it->second);
+                int& level = get<0>(it->second);
                 if (level < 10) level--;
                 cout << name << "'s friendship level is now " << level << ".\n";
             } else {
@@ -73,22 +73,24 @@ int main() {
         }
 
         // option 3: milestone 2's search code reused
+        else if (choice == 3) {
+            cout << "Enter villager name to search: ";
+            getline(cin >> ws, name);
+
+            auto it = villagers.find(name);
+            if (it != villagers.end()) {
+                cout << "\nFound " << name << ": ["
+                     << get<0>(it->second) << ", "
+                     << get<1>(it->second) << ", "
+                     << get<2>(it->second) << "]\n";
+            } else {
+                cout << "Villager not found.\n" << endl;
+            }
+        }
+
+        // option 4: exit program
+
         
-
-    }
-    
-    // search for a villager
-    string searchKey = "Drago";
-    auto it = villagers.find(searchKey);
-    if (it != villagers.end()) {       // the iterator points to beyond the end of the map
-                                       // if searchKey is not found
-        cout << "\nFound " << searchKey << ": ["
-             << get<0>(it->second) << ", "
-             << get<1>(it->second) << ", "
-             << get<2>(it->second) << "]\n";
-    } else
-        cout << endl << searchKey << " not found." << endl;
-
     // report size, clear, report size again to confirm villager operations
     cout << "\nSize before clear: " << villagers.size() << endl;
     villagers.clear();
